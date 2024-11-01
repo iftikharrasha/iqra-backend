@@ -1,4 +1,4 @@
-const { getIqraBookService, createIqraParaService, deleteIqraBookService, deleteSingleIqraParaService, updateSingleIqraParaService, createIqraSurahService, deleteSingleIqraSurahService, updateSingleIqraSurahService, createIqraAyatService, deleteSingleIqraAyatService, updateSingleIqraAyatService, getSingleIqraParaService, getSingleIqraSurahService, getSingleIqraAyatService } = require("../../services/iqra/iqra.service");
+const { getIqraBookService, deleteIqraBookService, deleteSingleIqraParaService, updateSingleIqraParaService, createIqraSurahService, deleteSingleIqraSurahService, updateSingleIqraSurahService, createIqraAyatService, deleteSingleIqraAyatService, updateSingleIqraAyatService, getSingleIqraSurahService, getSingleIqraAyatService } = require("../../services/iqra/iqra.service");
 
 const getIqraBook = async (req, res, next) => {
     console.log(`${req.originalUrl}`);
@@ -41,71 +41,6 @@ const getIqraBook = async (req, res, next) => {
     }
 
     res.send(response);
-}
-
-//para
-const createIqraPara = async (req, res, next) => {
-    console.log(`${req.originalUrl}`);
-    let response = {
-        success: true,
-        status: 200,
-        version: 1,
-        data: {},
-        error: null,
-        message: "Success",
-    }
-    try {
-        // save or create
-        const result = await createIqraParaService(req.body);
-
-        response.data = result;
-        response.message = "Para created successfully";
-
-        res.send(response);
-    } catch (error) {
-        response.success = false;
-        response.status = 400;
-        response.message = "Data is not inserted";
-        response.error = {
-            code: 400,
-            message: error.message,
-            target: "client side api calling issue"
-        }
-
-        res.send(response);
-    }
-};
-
-const getSingleIqraPara = async (req, res, next) => {
-    console.log(`${req.originalUrl}`);
-    let response = {
-        success: true,
-        status: 200,
-        signed_in: false,
-        version: 1,
-        data: [],
-        error: null
-    }
-            
-    try {
-        const data = await getSingleIqraParaService(req.params.id);
-        response.data = data;
-        res.send(response);
-    } catch (err) {
-        console.log(err);
-        res.send({
-            success: false,
-            status: 500,
-            data: null,
-            signed_in: false,
-            version: 1,
-            error: { 
-                code: 500, 
-                message: "An Internal Error Has Occurred!",
-                target: "approx what the error came from", 
-            }
-        });
-    }
 }
 
 const deleteIqraBook = async (req, res, next) => {
@@ -252,8 +187,7 @@ const createIqraSurah = async (req, res, next) => {
         message: "Success",
     }
     try {
-        const { id } = req.params;
-        const result = await createIqraSurahService(id, req.body);
+        const result = await createIqraSurahService(req.body);
 
         response.data = result;
         response.message = "Surah created successfully";
@@ -550,8 +484,6 @@ const updateSingleIqraAyat = async (req, res, next) => {
 
 module.exports = {
     getIqraBook,
-    createIqraPara,
-    getSingleIqraPara,
     deleteIqraBook,
     deleteSingleIqraPara,
     updateSingleIqraPara,
