@@ -11,6 +11,7 @@ module.exports = (...roles) => {
     }
 
     // Extract the user role(s) from the `typ` claim in the JWT
+    console.log(req.user)
     const permissions = req.user.typ;
     const isMatch = roles.some(role => permissions.includes(role));
 

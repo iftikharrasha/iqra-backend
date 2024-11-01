@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
         response.signed_in = false,
         response.error = {
             code: 403,
-            message: "Not a valid parameter",
+            message: "Not a valid id",
             target: "Params middleware"
         }
         return res.status(403).send(response);
@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       status: "fail",
-      error: "Params middleware issue"
+      error: "Parameter middleware issue on server"
     });
   }
 };

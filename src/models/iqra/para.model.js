@@ -11,7 +11,6 @@ const ParaSchema = new mongoose.Schema({
     quote: { type: String, default: "" },
     tika: { type: [String], default: [] },
     totalSurah: { type: Number, required: true },
-    // totalSurahAdded: { type: Number, default: 0 },
     surah: [{
       type: ObjectId,
       ref: 'Surah',

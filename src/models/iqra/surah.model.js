@@ -7,7 +7,7 @@ const surahSchema = new mongoose.Schema({
     name_bn: { type: String, required: true },
     name_ar: { type: String, required: true },
     totalAyat: { type: Number, required: true },
-    // totalAyatAdded: { type: Number, default: 0 },
+    featured: { type: Boolean, default: false},
     ayat: [{
       type: ObjectId,
       ref: 'Ayat',

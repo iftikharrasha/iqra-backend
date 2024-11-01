@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router()
 const iqraControllers = require('../../controllers/iqra/iqra.controller');
+const validateParams = require("../../middlewares/validateParams");
+const authentication = require("../../middlewares/authentication");
+const authorization = require("../../middlewares/authorization");
 
 // base route: /api/iqra/book
 
 router
 .route('/')
 .get(iqraControllers.getIqraBook)
-.delete(iqraControllers.deleteIqraBook)
+.delete(authentication, authorization("user"), iqraControllers.deleteIqraBook)
 
 router
 .route('/para')
@@ -15,22 +18,22 @@ router
 
 router
 .route('/para/:id')
-.get(iqraControllers.getSingleIqraPara)
-.delete(iqraControllers.deleteSingleIqraPara)
-.patch(iqraControllers.updateSingleIqraPara)
+.get(validateParams, iqraControllers.getSingleIqraPara)
+.delete(authentication, authorization("user"), validateParams, iqraControllers.deleteSingleIqraPara)
+.patch(validateParams, iqraControllers.updateSingleIqraPara)
 
 router
 .route('/surah/:id')
-.post(iqraControllers.createIqraSurah)
-.get(iqraControllers.getSingleIqraSurah)
-.delete(iqraControllers.deleteSingleIqraSurah)
-.patch(iqraControllers.updateSingleIqraSurah)
+.post(validateParams, iqraControllers.createIqraSurah)
+.get(validateParams, iqraControllers.getSingleIqraSurah)
+.delete(authentication, authorization("user"), validateParams, iqraControllers.deleteSingleIqraSurah)
+.patch(validateParams, iqraControllers.updateSingleIqraSurah)
 
 router
 .route('/ayat/:id')
-.post(iqraControllers.createIqraAyat)
-.get(iqraControllers.getSingleIqraAyat)
-.delete(iqraControllers.deleteSingleIqraAyat)
-.patch(iqraControllers.updateSingleIqraAyat)
+.post(validateParams, iqraControllers.createIqraAyat)
+.get(validateParams, iqraControllers.getSingleIqraAyat)
+.delete(authentication, authorization("user"), validateParams, iqraControllers.deleteSingleIqraAyat)
+.patch(validateParams, iqraControllers.updateSingleIqraAyat)
 
 module.exports = router;

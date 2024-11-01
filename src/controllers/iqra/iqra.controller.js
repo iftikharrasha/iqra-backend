@@ -1,6 +1,7 @@
 const { getIqraBookService, createIqraParaService, deleteIqraBookService, deleteSingleIqraParaService, updateSingleIqraParaService, createIqraSurahService, deleteSingleIqraSurahService, updateSingleIqraSurahService, createIqraAyatService, deleteSingleIqraAyatService, updateSingleIqraAyatService, getSingleIqraParaService, getSingleIqraSurahService, getSingleIqraAyatService } = require("../../services/iqra/iqra.service");
 
 const getIqraBook = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -44,6 +45,7 @@ const getIqraBook = async (req, res, next) => {
 
 //para
 const createIqraPara = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -75,6 +77,7 @@ const createIqraPara = async (req, res, next) => {
 };
 
 const getSingleIqraPara = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -106,6 +109,7 @@ const getSingleIqraPara = async (req, res, next) => {
 }
 
 const deleteIqraBook = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -148,6 +152,7 @@ const deleteIqraBook = async (req, res, next) => {
 };
 
 const deleteSingleIqraPara = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -191,6 +196,7 @@ const deleteSingleIqraPara = async (req, res, next) => {
 };
 
 const updateSingleIqraPara = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -236,6 +242,7 @@ const updateSingleIqraPara = async (req, res, next) => {
 
 //surah
 const createIqraSurah = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -267,6 +274,7 @@ const createIqraSurah = async (req, res, next) => {
 };
 
 const getSingleIqraSurah = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -298,6 +306,7 @@ const getSingleIqraSurah = async (req, res, next) => {
 }
 
 const deleteSingleIqraSurah = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -341,6 +350,7 @@ const deleteSingleIqraSurah = async (req, res, next) => {
 };
 
 const updateSingleIqraSurah = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -386,6 +396,7 @@ const updateSingleIqraSurah = async (req, res, next) => {
 
 //ayat
 const createIqraAyat = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -417,6 +428,7 @@ const createIqraAyat = async (req, res, next) => {
 };
 
 const getSingleIqraAyat = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -448,6 +460,7 @@ const getSingleIqraAyat = async (req, res, next) => {
 }
 
 const deleteSingleIqraAyat = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
@@ -491,6 +504,7 @@ const deleteSingleIqraAyat = async (req, res, next) => {
 };
 
 const updateSingleIqraAyat = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
     let response = {
         success: true,
         status: 200,
