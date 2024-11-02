@@ -47,16 +47,24 @@ const updateSingleIqraSurahService = async (id, data) => {
 
 //ayat
 const createIqraAyatService = async (id, data) => {
+    const surahExists = await Surah.findById(id);
+    if (!surahExists) {
+        console.log(`Surah with ID ${id} does not exist.`);
+        return false; 
+    }
+
     const ayat = await Ayat.create(data);
-    const surah = await Surah.findOneAndUpdate(
-        { _id: id }, 
+    const surah = await Surah.findByIdAndUpdate(
+        id,
         { 
-            $push: { 'ayat': ayat._id }, 
-            // $inc: { totalSurahAdded: 1 } 
+            $push: { 'ayat': ayat._id }
         },
-        { new: true });
+        { new: true }
+    );
+
     return ayat;
-}
+};
+
 
 const getSingleIqraAyatService = async (id) => {
     const ayat = await Ayat.findById({ _id: id })

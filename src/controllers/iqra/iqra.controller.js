@@ -343,8 +343,12 @@ const createIqraAyat = async (req, res, next) => {
         const { id } = req.params;
         const result = await createIqraAyatService(id, req.body);
 
-        response.data = result;
-        response.message = "Ayat created successfully";
+        if(result) {
+            response.data = result;
+            response.message = "Ayat created successfully";
+        }else{
+             response.message = "Surah id is not found";
+        }
 
         res.send(response);
     } catch (error) {
