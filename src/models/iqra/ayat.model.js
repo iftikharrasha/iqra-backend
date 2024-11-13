@@ -7,6 +7,8 @@ const AyatSchema = new mongoose.Schema({
     bn: { type: String, required: true },
     tafsir: { type: [String], default: [] },
     tika: { type: [String], default: [] },
+    shanenuzul: { type: String, default: "" },
+    quote: { type: String, default: "" },
     mood: { type: String, default: "" },
     featured: { type: Boolean, default: false},
     audio: { type: String, default: "" },

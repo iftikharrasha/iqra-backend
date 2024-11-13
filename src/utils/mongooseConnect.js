@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// const uri = `${process.env.APP_DATABASE_URI}/?retryWrites=true&w=majority`;
-// const uri = `${process.env.APP_DATABASE_URI}/chethetest?retryWrites=true&w=majority`;
+// const uri = `${process.env.APP_DATABASE_URI}/iqratest?retryWrites=true&w=majority`;
 const uri = `${process.env.APP_DATABASE_URI}/iqrabook?retryWrites=true&w=majority&appName=fpchandler`;
 
 const mongooseConnect = async () => {
