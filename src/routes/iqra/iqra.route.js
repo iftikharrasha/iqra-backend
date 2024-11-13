@@ -11,7 +11,7 @@ router
 .route('/surah')
 .get(iqraControllers.getIqraBook)
 .post(iqraControllers.createIqraSurah)
-.delete(authentication, authorization("user"), iqraControllers.deleteIqraBook)
+.delete(authentication, authorization("admin"), iqraControllers.deleteIqraBook)
 
 router
 .route('/surah/:id')
