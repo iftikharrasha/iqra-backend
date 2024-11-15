@@ -14,11 +14,7 @@
     ],
     "functions": {
       "api/**/*.{js,ts}": {
-        "maxDuration": 150,
-        "memory": 1024,
-        "limits": {
-          "body": 10000000
-        }
+        "maxDuration": 150
       }
     }
   }
