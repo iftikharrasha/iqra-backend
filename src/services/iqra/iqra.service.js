@@ -81,6 +81,16 @@ const updateSingleIqraAyatService = async (id, data) => {
     return ayat;
 };
 
+//tafsir
+const addSingleIqraAyatTafsirService = async (id, data) => {
+    const ayat = await Ayat.findOneAndUpdate(
+        { _id: id },
+        { $push: { 'tafsir': data.tafsir } },
+        { new: true } 
+    );
+    return ayat; 
+};
+
 //reset
 const deleteIqraBookService = async () => {
     const surah = await Surah.deleteMany({});
@@ -98,5 +108,6 @@ module.exports = {
     getSingleIqraAyatService,
     deleteSingleIqraAyatService,
     updateSingleIqraAyatService,
-    deleteIqraBookService
+    deleteIqraBookService,
+    addSingleIqraAyatTafsirService
 }

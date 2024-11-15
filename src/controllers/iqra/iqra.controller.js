@@ -1,4 +1,4 @@
-const { getIqraBookService, deleteIqraBookService, deleteSingleIqraParaService, updateSingleIqraParaService, createIqraSurahService, deleteSingleIqraSurahService, updateSingleIqraSurahService, createIqraAyatService, deleteSingleIqraAyatService, updateSingleIqraAyatService, getSingleIqraSurahService, getSingleIqraAyatService } = require("../../services/iqra/iqra.service");
+const { getIqraBookService, deleteIqraBookService, deleteSingleIqraParaService, updateSingleIqraParaService, createIqraSurahService, deleteSingleIqraSurahService, updateSingleIqraSurahService, createIqraAyatService, deleteSingleIqraAyatService, updateSingleIqraAyatService, getSingleIqraSurahService, getSingleIqraAyatService, addSingleIqraAyatTafsirService } = require("../../services/iqra/iqra.service");
 
 const getIqraBook = async (req, res, next) => {
     console.log(`${req.originalUrl}`);
@@ -486,6 +486,51 @@ const updateSingleIqraAyat = async (req, res, next) => {
     }
 };
 
+const addSingleIqraAyatTafsir = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
+    let response = {
+        success: true,
+        status: 200,
+        signed_in: false,
+        version: 1,
+        data: [],
+        error: null
+    }
+    try {
+        const { id } = req.params;
+        const data = req.body;
+    
+        const result = await addSingleIqraAyatTafsirService(id, data);
+    
+        if (!result) {
+            response.success = false;
+            response.status = 400;
+            response.message = "Tafsir is not added";
+            response.error = {
+                code: 400,
+                message: error.message,
+                target: "client side api calling issue"
+            }
+
+            return res.send(response);
+        }
+  
+        response.message = "Tafsir added successfully";
+        res.send(response);
+    } catch (error) {
+        response.success = false;
+        response.status = 400;
+        response.message = "Tafsir is not added";
+        response.error = {
+            code: 400,
+            message: error.message,
+            target: "client side api calling issue"
+        }
+
+        res.send(response);
+    }
+};
+
 module.exports = {
     getIqraBook,
     deleteIqraBook,
@@ -498,5 +543,6 @@ module.exports = {
     createIqraAyat,
     getSingleIqraAyat,
     deleteSingleIqraAyat,
-    updateSingleIqraAyat
+    updateSingleIqraAyat,
+    addSingleIqraAyatTafsir
 }

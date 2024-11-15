@@ -26,4 +26,9 @@ router
 .patch(validateParams, iqraControllers.updateSingleIqraAyat)
 .delete(authentication, authorization("user"), validateParams, iqraControllers.deleteSingleIqraAyat)
 
+
+router
+.route('/tafsir/:id')
+.patch(validateParams, iqraControllers.addSingleIqraAyatTafsir)
+
 module.exports = router;
