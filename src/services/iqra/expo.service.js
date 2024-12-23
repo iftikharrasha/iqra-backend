@@ -1,6 +1,18 @@
 const Ayat = require("../../models/iqra/ayat.model");
 const Surah = require("../../models/iqra/surah.model");
 
+const getSurahPageService = async (id) => {
+    const surah = await Surah.findById(id)
+        .select('_id no para name_en name_ar name_bn ruku place ayat totalAyat fazilat naming shanenuzul tika quote')
+        .populate({
+            path: 'ayat',
+            select: '_id no para ar bn tika shanenuzul quote',
+            options: { limit: 1 }
+        });
+
+    return surah;
+};
+
 const getAyatsPageService = async (id) => {
     const surah = await Surah.findById(id)
         .select('_id no para name_en name_ar name_bn ayat totalAyat')
@@ -25,6 +37,7 @@ const getTafsirPageService = async (id, aid) => {
 };
 
 module.exports = {
+    getSurahPageService,
     getAyatsPageService,
     getTafsirPageService,
 }

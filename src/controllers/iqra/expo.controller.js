@@ -1,6 +1,6 @@
-const { getAyatsPageService, getTafsirPageService } = require("../../services/iqra/expo.service");
+const { getAyatsPageService, getTafsirPageService, getSurahPageService } = require("../../services/iqra/expo.service");
 
-const getTafsirPage = async (req, res, next) => {
+const getSurahPage = async (req, res, next) => {
     console.log(`${req.originalUrl}`);
     let response = {
         success: true,
@@ -12,9 +12,9 @@ const getTafsirPage = async (req, res, next) => {
     }
             
     try {
-        const { id, aid } = req.params;
+        const { id } = req.params;
 
-        const data = await getTafsirPageService(id, aid);
+        const data = await getSurahPageService(id);
         response.data = data;
         res.send(response);
     } catch (err) {
@@ -68,7 +68,42 @@ const getAyatsPage = async (req, res, next) => {
     }
 }
 
+const getTafsirPage = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
+    let response = {
+        success: true,
+        status: 200,
+        signed_in: false,
+        version: 1,
+        data: [],
+        error: null
+    }
+            
+    try {
+        const { id, aid } = req.params;
+
+        const data = await getTafsirPageService(id, aid);
+        response.data = data;
+        res.send(response);
+    } catch (err) {
+        console.log(err);
+        res.send({
+            success: false,
+            status: 500,
+            data: null,
+            signed_in: false,
+            version: 1,
+            error: { 
+                code: 500, 
+                message: "An Internal Error Has Occurred!",
+                target: "approx what the error came from", 
+            }
+        });
+    }
+}
+
 module.exports = {
+    getSurahPage,
     getAyatsPage,
     getTafsirPage,
 }
