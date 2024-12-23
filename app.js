@@ -4,6 +4,7 @@ const cors = require('cors');
 const errHandler = require('./src/middlewares/errHandler.js');
 const iqraRoute = require('./src/routes/iqra/iqra.route.js');
 const mongoDBRoute = require('./src/routes/iqra/mongo.route.js');
+const expoDBRoute = require('./src/routes/iqra/expo.route.js');
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,7 @@ app.use(express.json({ limit: '4mb' }));
 
 app.use("/api/iqra/book", iqraRoute)
 app.use("/api/iqra/mongo", mongoDBRoute)
+app.use("/api/iqra/expo", expoDBRoute)
 
 app.get('/', (req, res) => {
     res.send('Server is loading on webhost!');
