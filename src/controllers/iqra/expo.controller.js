@@ -1,4 +1,37 @@
-const { getAyatsPageService, getTafsirPageService, getSurahPageService } = require("../../services/iqra/expo.service");
+const { getHomePageService, getSurahPageService, getAyatsPageService, getTafsirPageService } = require("../../services/iqra/expo.service");
+
+
+const getHomePage = async (req, res, next) => {
+    console.log(`${req.originalUrl}`);
+    let response = {
+        success: true,
+        status: 200,
+        signed_in: false,
+        version: 1,
+        data: [],
+        error: null
+    }
+            
+    try {
+        const data = await getHomePageService();
+        response.data = data;
+        res.send(response);
+    } catch (err) {
+        console.log(err);
+        res.send({
+            success: false,
+            status: 500,
+            data: null,
+            signed_in: false,
+            version: 1,
+            error: { 
+                code: 500, 
+                message: "An Internal Error Has Occurred!",
+                target: "approx what the error came from", 
+            }
+        });
+    }
+}
 
 const getSurahPage = async (req, res, next) => {
     console.log(`${req.originalUrl}`);
@@ -103,6 +136,7 @@ const getTafsirPage = async (req, res, next) => {
 }
 
 module.exports = {
+    getHomePage,
     getSurahPage,
     getAyatsPage,
     getTafsirPage,

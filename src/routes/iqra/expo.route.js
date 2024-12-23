@@ -8,6 +8,10 @@ const authorization = require("../../middlewares/authorization");
 // base route: /api/iqra/expo
 
 router
+.route('/home')
+.get(expoControllers.getHomePage)
+
+router
 .route('/surah/:id')
 .get(validateParams, expoControllers.getSurahPage)
 
