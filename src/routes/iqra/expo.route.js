@@ -16,6 +16,10 @@ router
 .get(validateParams, expoControllers.getSurahPage)
 
 router
+.route('/surahs')
+.get(expoControllers.getSearchPage)
+
+router
 .route('/ayat/:id')
 .get(validateParams, expoControllers.getAyatsPage)
 

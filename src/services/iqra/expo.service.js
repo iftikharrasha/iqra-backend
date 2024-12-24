@@ -61,6 +61,12 @@ const getHomePageService = async () => {
     };
 };
 
+const getSearchPageService = async () => {
+    const surah = await Surah.find({})
+                            .select('_id no para name_en name_ar name_bn totalAyat')
+
+    return surah;
+}
 
 const getSurahPageService = async (id) => {
     const surah = await Surah.findById(id)
@@ -99,6 +105,7 @@ const getTafsirPageService = async (id, aid) => {
 
 module.exports = {
     getHomePageService,
+    getSearchPageService,
     getSurahPageService,
     getAyatsPageService,
     getTafsirPageService,
