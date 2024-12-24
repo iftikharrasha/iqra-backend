@@ -17,6 +17,27 @@ const getHomePageService = async () => {
         }
     ]);
 
+    let ayatWithSurah = null;
+
+    if (random.length > 0) {
+        const ayat = random[0];
+
+        // Find the Surah where the Ayat ID is in the surah.ayat array
+        const surah = await Surah.findOne({ ayat: ayat._id })
+            .select('name_bn no _id');
+
+        if (surah) {
+            ayatWithSurah = {
+                ...ayat,
+                surahName_bn: surah.name_bn,
+                surahNo: surah.no,
+                surahId: surah._id,
+            };
+        } else {
+            ayatWithSurah = ayat; // Return Ayat without Surah if no matching Surah found
+        }
+    }
+
     // Get 5 random Surah
     const featured = await Surah.aggregate([
         { $match: { featured: true } },
@@ -35,7 +56,7 @@ const getHomePageService = async () => {
     ]);
 
     return {
-        random: random[0] || null, 
+        random: ayatWithSurah, 
         featured: featured
     };
 };
